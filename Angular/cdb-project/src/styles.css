@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.form-field-width {
+    width: 350px;
+}
+
+.back-button {
+    margin-top: 15px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.back-button:hover{
+    background-color: rgba(0, 0, 0, 0.186);
+    border-radius: 50%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+.text-overflow {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+h3 {
+    padding-right: 10px;
+    padding-top: 20px;
+}
+
+mat-card {
+    
+    padding: auto;
+    border-radius: 15px;
+    border-color: black;
+}
+
+
+mat-card-content {
+    
+    padding: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+}

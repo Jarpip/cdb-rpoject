@@ -1,0 +1,15 @@
+<div class="side-nav-content">
+    <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
+
+        <li class="nav-list-item" *ngFor="let menu of menuList">
+            
+            <span>
+                <a (click)="clearEditData(menu)" routerLink="/{{menu.programCode}}" routerLinkActive="active">
+                    <i class="{{menu.iconName}}"></i>
+                    {{menu.menuName}}
+                </a>
+            </span>
+        </li>
+
+    </ul>
+</div>

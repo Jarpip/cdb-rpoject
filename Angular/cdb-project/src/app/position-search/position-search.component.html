@@ -1,0 +1,79 @@
+<div style="width: 80%">
+    <div class="row" style="width: fit-content">
+        <div class="container">
+            <button (click)="save()" style="margin-bottom: 10px;margin-top: 10px; float: right;" mat-flat-button color="primary">ไปหน้าบันทึกตำแหน่งงาน</button>
+        </div>
+
+        <div>
+            <mat-card>
+                <mat-card-title>ค้นหาตำแหน่งงาน</mat-card-title>
+                <mat-card-content>
+                    <div class="input-group" style="padding-left: 20px">
+                        <h3>ชื่อตำแหน่งงาน</h3>
+                        <mat-form-field style="width: 300px" appearance="standard" style="width: 400px">
+                            <input matInput autocomplete="off" [(ngModel)]="positionModel.positionName">
+                        </mat-form-field>
+            
+                        <h3 style="padding-left: 60px">ประเภทหน่วยงาน</h3>
+                        <mat-form-field style="width: 300px" appearance="standard" style="width: 150px">
+                            <input matInput autocomplete="off" [(ngModel)]="positionModel.officeType">
+                        </mat-form-field>
+        
+                        <button style="margin-left: 20px;float: right;" mat-icon-button aria-label="Clear" (click)="search(positionModel)">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                    
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <br>
+    <div>
+        <table mat-table class="mat-elevation-z3 table" [dataSource]="dataSource">
+    
+            <ng-container matColumnDef="row">
+                <th mat-header-cell *matHeaderCellDef>ลำดับ</th>
+                <td mat-cell *matCellDef="let i=index">{{i+1}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="positionName">
+                <th mat-header-cell *matHeaderCellDef>ชื่อตำแหน่งงาน</th>
+                <td mat-cell *matCellDef="let positionModel">{{positionModel.positionName}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="officeType">
+                <th mat-header-cell *matHeaderCellDef>ประเภทหน่วยงาน</th>
+                <td mat-cell *matCellDef="let positionModel">{{positionModel.officeType}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="orderNo">
+                <th mat-header-cell *matHeaderCellDef>เรียงลำดับที่</th>
+                <td mat-cell *matCellDef="let positionModel">{{positionModel.orderNo}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> แก้ไข/ลบ </th>
+                <td mat-cell *matCellDef="let positionModel">
+                    <button (click)="editData(positionModel)" mat-icon-button class="material-icons app-toolbar-menu save-button" matTooltip="Edit" color="primary">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+              
+                    <button (click)="deleteData(positionModel)" mat-icon-button class="material-icons app-toolbar-menu delete-button" matTooltip="Delete" color="warn">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        
+            <tr class="mat-row" *matNoDataRow style="text-align: center; width: 100%;">
+                <td class="mat-cell" colspan="5">ไม่พบข้อมูลที่ตรงกับที่ต้องการค้นหา</td>
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 25, 50]" style="margin-right: 0px"></mat-paginator>
+    </div>
+</div>
+

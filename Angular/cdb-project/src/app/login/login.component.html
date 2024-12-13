@@ -1,0 +1,21 @@
+<form [formGroup]="form" class="example-form">
+    <h1>Login</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" autocomplete="off" [(ngModel)]="userModel.userName">
+        <mat-error *ngIf="this.form.controls?.['username']?.hasError('required')">
+            This field is required.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" autocomplete="off" [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="userModel.password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="this.form.controls?.['password']?.hasError('required')">
+            This field is required.
+        </mat-error>
+    </mat-form-field> 
+    <button mat-flat-button color="primary" (click)="doLogin()">Login</button>
+
+    
+</form>

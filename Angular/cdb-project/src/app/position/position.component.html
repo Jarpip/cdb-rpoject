@@ -1,0 +1,49 @@
+<div style="width: 80%">
+    <div class="row" style="width: fit-content;">
+        <div class="container">
+          <i class="fa-solid fa-angle-left back-button" (click)="clearEditData()" routerLink="/main/position-search"></i>
+          <button (click)="save()" style="margin-bottom: 10px;margin-top: 10px; float: right;" mat-flat-button color="primary">บันทึก</button>
+        </div>
+
+        <div>
+            <mat-card>
+                <mat-card-title>บันทึกตำแหน่งงาน</mat-card-title>
+                <form [formGroup]="positionForm">
+                    <mat-card-content>
+                        <div class="input-group">
+                            <div>
+                                <h3 style="display: inline">ชื่อตำแหน่งงาน</h3>
+                                <mat-form-field class="form-field-width" appearance="standard" style="width: 400px">
+                                    <input matInput type="text" formControlName="positionName" [(ngModel)]="positionModel.positionName" autocomplete="off" style="display: inline">
+                                    <mat-error *ngIf="this.positionForm.controls?.['positionName']?.hasError('required')">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <br>
+                                <h3 style="display: inline;">ประเภทหน่วยงาน</h3>
+                                <mat-radio-group formControlName="officeType" style="display: inline" [(ngModel)]="positionModel.officeType">
+                                    <mat-radio-button value="กรมสรรพสามิต">กรมสรรพสามิต</mat-radio-button>
+                                    <mat-radio-button value="หน่วยงานอื่น">หน่วยงานอื่น</mat-radio-button>
+                                    <mat-radio-button value="บริษัท">บริษัท</mat-radio-button>
+                                </mat-radio-group>
+
+                                <br>
+                                <h3 style="display: inline;">เรียงลำดับที่</h3>
+                                <mat-form-field class="form-field-width" appearance="standard" style="width: 100px">
+                                    <input matInput formControlName="orderNo" type="text" ngxNumberFormat="#,###,###" [(ngModel)]="positionModel.orderNo" autocomplete="off" style="display: inline">
+                                    <mat-error *ngIf="this.positionForm.controls?.['orderNo']?.hasError('required')">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+

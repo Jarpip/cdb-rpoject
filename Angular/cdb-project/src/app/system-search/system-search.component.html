@@ -1,0 +1,87 @@
+<div style="width: 80%">
+  <div class="row" style="width: fit-content">
+    <div class="container">
+      <button (click)="save()" style="margin-bottom: 10px;margin-top: 10px; float: right;" mat-flat-button color="primary">ไปหน้าบันทึกระบบ</button>
+    </div>
+
+    <div>
+      <mat-card>
+        <mat-card-title>ค้นหาระบบ</mat-card-title>
+        <mat-card-content>
+          <div class="input-group" style="padding-left: 190px">
+              <h3 style="padding-right: 20px">วันที่สร้าง</h3>
+              <mat-form-field class="form-field-width" appearance="standard"  style="width: 200px">
+                <input matInput [(ngModel)]="sysModel.createDate" autocomplete="off" [matDatepicker]="picker" [max]="currentDate" (change)="sysModel.createDate = stringToDate($any($event.target).value)">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+      
+              <h3 style="padding-left: 60px">รหัสระบบ</h3>
+              <mat-form-field class="form-field-width" appearance="standard" style="width: 100px">
+                  <input matInput [(ngModel)]="sysModel.systemCode" autocomplete="off" (change)="sysModel.systemCode = $any($event.target).value">
+              </mat-form-field>
+              <button style="margin-left: 20px;float: right;" mat-icon-button aria-label="Clear" (click)="search(sysModel.createDate,sysModel.systemCode)">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+        </mat-card-content>
+  
+      </mat-card>
+    </div>
+  </div>
+  
+  <br>
+  <div>
+    <table mat-table class="mat-elevation-z3 table" [dataSource]="dataSource">
+
+      <ng-container matColumnDef="systemCode">
+        <th mat-header-cell *matHeaderCellDef>รหัสระบบ</th>
+        <td mat-cell *matCellDef="let sysModel">{{sysModel.systemCode}}</td>
+      </ng-container>
+    
+    
+      <ng-container matColumnDef="systemName">
+        <th mat-header-cell *matHeaderCellDef>ชื่อระบบ</th>
+        <td mat-cell *matCellDef="let sysModel">{{sysModel.systemName}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="remark">
+        <th mat-header-cell *matHeaderCellDef>หมายเหตุ</th>
+        <td mat-cell *matCellDef="let sysModel">
+          <span class="text-overflow">
+            {{sysModel.remark}}
+          </span>
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> แก้ไข/ลบ </th>
+        <td mat-cell *matCellDef="let sysModel">
+          <button (click)="editData(sysModel)" mat-icon-button class="material-icons app-toolbar-menu save-button" matTooltip="Edit" color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+    
+          <button (click)="deleteData(sysModel)" mat-icon-button class="material-icons app-toolbar-menu delete-button" matTooltip="Delete" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    
+      
+      <tr class="mat-row" *matNoDataRow style="text-align: center;">
+        <td class="mat-cell" colspan="4">ไม่พบข้อมูลที่ตรงกับที่ต้องการค้นหา</td>
+      </tr>
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[10, 25, 50]" style="margin-right: 0px"></mat-paginator>
+  </div>
+</div>
+
+
+
+
+

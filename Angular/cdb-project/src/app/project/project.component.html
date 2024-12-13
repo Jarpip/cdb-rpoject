@@ -1,0 +1,80 @@
+<div style="width: 80%">
+    <div class="row" style="width: fit-content">
+        <div class="container">
+          <i class="fa-solid fa-angle-left back-button" (click)="clearEditData()" routerLink="/main/project-search"></i>
+          <button style="margin-bottom: 10px;margin-top: 10px; float: right;" mat-flat-button color="primary" (click)="save()">บันทึก</button>
+        </div>
+
+        <div>
+            <mat-card>
+                <mat-card-title>บันทึกโครงการ</mat-card-title>
+                <form [formGroup]="projectForm">
+                    <mat-card-content>
+                        <div class="input-group" style="padding-left: 100px">
+                            <h3 style="padding-right: 40px">ชื่อโครงการ</h3>
+                            <mat-form-field class="form-field-width" appearance="standard">
+                                <input matInput formControlName="projectName" autocomplete="off" [(ngModel)]="projModel.projectName">
+                                <mat-error *ngIf="this.projectForm.controls?.['projectName']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                            </mat-form-field>
+                
+                            <h3 style="padding-left: 40px; padding-right: 10px">รหัสโครงการ</h3>
+                            <mat-form-field class="form-field-width" appearance="standard" style="width: 100px">
+                                <input matInput formControlName="projectCode" autocomplete="off" [(ngModel)]="projModel.projectCode">
+                                <mat-error *ngIf="this.projectForm.controls?.['projectCode']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                            </mat-form-field>
+                
+                        </div>
+                        <div class="input-group" style="padding-left: 100px">
+                            <h3>หมายเลขสัญญา</h3>
+                            <mat-form-field class="form-field-width" appearance="standard" style="width: 100px">
+                                <input matInput formControlName="contractNum" autocomplete="off" [(ngModel)]="projModel.contractNo">
+                                <mat-error *ngIf="this.projectForm.controls?.['contractNum']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                            </mat-form-field>
+                
+                            <h3 style="padding-left: 30px; padding-right: 10px" >วันที่ลงสัญญา</h3>
+                            <mat-form-field class="form-field-width" appearance="standard" style="width: 200px">
+                                <input matInput formControlName="contractDate" [(ngModel)]="projModel.contractDate" autocomplete="off" [matDatepicker]="picker" (change)="projModel.contractDate = stringToDate($any($event.target).value)">
+                                <mat-error *ngIf="this.projectForm.controls?.['contractDate']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                
+                        </div>
+                        <div class="input-group" style="padding-left: 100px">
+                            <h3 style="padding-right: 55px;">หมายเหตุ</h3>
+                            <mat-form-field class="form-field-width" appearance="standard" style="width: 600px">
+                                <input matInput formControlName="remark" autocomplete="off" [(ngModel)]="projModel.remark">
+                                <mat-error *ngIf="this.projectForm.controls?.['remark']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

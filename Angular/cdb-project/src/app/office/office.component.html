@@ -1,0 +1,59 @@
+<div style="width: 80%">
+    <div class="row" style="width: fit-content;">
+        <div class="container">
+          <i class="fa-solid fa-angle-left back-button" (click)="clearEditData()" routerLink="/main/office-search"></i>
+          <button (click)="save()" style="margin-bottom: 10px;margin-top: 10px; float: right;" mat-flat-button color="primary">บันทึก</button>
+        </div>
+    
+        <div>
+            <mat-card>
+                <mat-card-title>บันทึกหน่วยงาน</mat-card-title>
+                <form [formGroup]="officeForm">
+                    <mat-card-content>
+                        <div class="input-group">
+                            <div>
+                                <h3 style="display: inline">ชื่อหน่วยงาน</h3>
+                                <mat-form-field class="form-field-width" appearance="standard" style="width: 400px">
+                                    <input matInput type="text" formControlName="officeName" [(ngModel)]="officeModel.officeName" autocomplete="off" style="display: inline">
+                                    <mat-error *ngIf="this.officeForm.controls?.['officeName']?.hasError('required')">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <h3 style="display: inline;"> ประเภทหน่วยงาน</h3>
+                                <mat-radio-group formControlName="officeType" style="display: inline" [(ngModel)]="officeModel.officeType">
+                                    <mat-radio-button value="กรมสรรพสามิต">กรมสรรพสามิต</mat-radio-button>
+                                    <mat-radio-button value="หน่วยงานอื่น">หน่วยงานอื่น</mat-radio-button>
+                                    <mat-radio-button value="บริษัท">บริษัท</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                  
+                        <div class="input-group">
+                            <div>
+                                <h3 style="display: inline">สีหน่วยงาน</h3>
+                                <mat-form-field class="form-field-width" appearance="standard" style="width: 120px">
+                                    <input matInput type="text" formControlName="officeColor" [(ngModel)]="officeModel.officeColor" autocomplete="off" style="display: inline">
+                                    <mat-error *ngIf="this.officeForm.controls?.['officeColor']?.hasError('required')">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+        
+                                <h3 style="padding-left: 30px; display: inline;">เรียงลำดับที่</h3>
+                                <mat-form-field class="form-field-width" appearance="standard" style="width: 85px">
+                                    <input matInput formControlName="orderNo" type="text" ngxNumberFormat="#,###,###" [(ngModel)]="officeModel.orderNo" autocomplete="off" style="display: inline">
+                                    <mat-error *ngIf="this.officeForm.controls?.['orderNo']?.hasError('required')">
+                                        This field is required.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </div>
+        
+    </div>
+</div>
+
+

@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2" (mouseleave)="CloseSideNav();">
+    <div class="side-nav-button p-2 me-3 text-light" (click)="SideNavToggle();">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+    <a class="navbar-brand px-4">ระบบจัดการฐานข้อมูลกลาง</a>
+    <div class="container" style="text-align: right;display: block;" >
+        <a class="navbar-brand" >ชื่อผู้ใช้งาน : {{userName}} <i class="fa fa-sign-out" style="padding-left: 20px" (click)="doLogout()"></i></a>
+    </div>
+    
+</nav>

@@ -1,0 +1,43 @@
+<div style="width: 80%">
+    <div class="row" style="width: fit-content;">
+        <div class="container">
+            <i class="fa-solid fa-angle-left back-button" (click)="clearEditData()" routerLink="/main/holiday-search"></i>
+            <button (click)="save()" style="margin-bottom: 10px;margin-top: 10px; float: right;" mat-flat-button color="primary">บันทึก</button>
+        </div>
+    
+        <div>
+            <mat-card>
+                <mat-card-title>บันทึกวันหยุด</mat-card-title>
+                <form [formGroup]="holidayForm">
+                    <mat-card-content>
+                        <div class="input-group" style="padding-left: 100px">
+                            <h3>วันที่หยุด</h3>
+                            <mat-form-field class="form-field-width" appearance="standard" style="width: 200px">
+                                <input matInput formControlName="holidayDate" autocomplete="off" [(ngModel)]="holiModel.holidayDate" (change)="holiModel.holidayDate = stringToDate($any($event.target).value)" [matDatepicker]="picker">
+                                <mat-error *ngIf="this.holidayForm.controls?.['holidayDate']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                
+                            <h3 style="padding-left: 20px">ชื่อวันหยุด</h3>
+                            <mat-form-field class="form-field-width" appearance="standard" style="width: 400px">
+                                <input matInput formControlName="holidayName" autocomplete="off" [(ngModel)]="holiModel.holidayName">
+                                <mat-error *ngIf="this.holidayForm.controls?.['holidayName']?.hasError('required')">
+                                    This field is required.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
